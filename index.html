@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Super Guide Japan — Your Ultimate Japan Travel & Living Guide</title>
-  <meta name="description" content="Comprehensive, practical guides for traveling and living in Japan. Shinkansen tickets, digital Suica, eSIM, top itineraries, and local tips.">
+  <meta name="description" content="Comprehensive, practical guides for traveling and living in Japan. Visa services, manners, Rakuten point strategies, travel and anime top-10s.">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,23 +14,33 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
   </style>
+  <script src="js/i18n.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased flex flex-col min-h-screen">
 
   <!-- Navigation -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center space-x-2">
+      <a href="index.html" class="flex items-center space-x-2">
         <span class="text-red-600 font-bold text-2xl tracking-tight">SuperGuide<span class="text-slate-900">Japan</span></span>
       </a>
-      <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-        <a href="#transport" class="hover:text-red-600 transition">Transport</a>
-        <a href="#connectivity" class="hover:text-red-600 transition">Connectivity</a>
-        <a href="#itineraries" class="hover:text-red-600 transition">Itineraries</a>
-        <a href="#living" class="hover:text-red-600 transition">Living in Japan</a>
-      </nav>
-      <div>
-        <a href="#guides" class="bg-red-600 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg hover:bg-red-700 transition">Start Here</a>
+
+      <div class="flex items-center space-x-4 md:space-x-8">
+        <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+          <a href="#hub-a" data-i18n="nav-living" class="hover:text-red-600 transition">Living in Japan</a>
+          <a href="services.html" class="hover:text-red-600 transition">Services</a>
+          <a href="#hub-c" data-i18n="nav-itineraries" class="hover:text-red-600 transition">Travel Guides</a>
+        </nav>
+
+        <div class="flex items-center space-x-4">
+          <select id="lang-select" class="bg-slate-100 border border-slate-200 text-slate-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2 outline-none">
+            <option value="en">🇬🇧 English</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ne">🇳🇵 नेपाली</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+          </select>
+          <a href="#hubs" data-i18n="nav-start" class="hidden md:inline-block bg-red-600 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg hover:bg-red-700 transition">Start Here</a>
+        </div>
       </div>
     </div>
   </header>
@@ -39,126 +49,171 @@
   <section class="bg-white border-b border-slate-200 py-16 sm:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-semibold mb-6">
-        <span>🇯🇵</span> Updated for 2026 Travelers & Expats
+        <span>🇯🇵</span> <span data-i18n="hero-updated">Updated for 2026 Travelers & Expats</span>
       </div>
       <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
-        Explore Japan with <span class="text-red-600">Confidence</span>
+        <span data-i18n="hero-title">Explore Japan with Confidence</span>
       </h1>
-      <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+      <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed" data-i18n="hero-desc">
         Everything you need to navigate Japan seamlessly: bullet train booking, digital IC cards, best eSIMs, and verified local itineraries.
       </p>
       
-      <!-- Quick Essentials Bar -->
+      <!-- CTA Buttons -->
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="services.html" class="bg-red-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-red-700 transition shadow-sm" data-i18n="cta-services">Visa & Translation Services</a>
+        <a href="guides/japan-manners-and-etiquette.html" class="bg-white text-slate-700 border border-slate-300 font-semibold py-3 px-6 rounded-lg hover:bg-slate-50 transition shadow-sm" data-i18n="cta-manners">Japan Manners Checklist</a>
+        <a href="guides/rakuten-card-points-guide.html" class="bg-white text-slate-700 border border-slate-300 font-semibold py-3 px-6 rounded-lg hover:bg-slate-50 transition shadow-sm" data-i18n="cta-rakuten">Get Rakuten Card</a>
+      </div>
+
+      <!-- Quick Essentials Bar (Affiliates) -->
       <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto text-left">
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-red-400 transition">
-          <div class="text-xl">🚅</div>
-          <div class="font-semibold text-slate-900 text-sm mt-1">Shinkansen</div>
-          <div class="text-xs text-slate-500">Smart EX & Tickets</div>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-red-400 transition">
+        <a href="#rakuten" class="p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-red-400 transition block">
           <div class="text-xl">💳</div>
-          <div class="font-semibold text-slate-900 text-sm mt-1">Digital Suica</div>
-          <div class="text-xs text-slate-500">iPhone & Android</div>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-red-400 transition">
+          <div class="font-semibold text-slate-900 text-sm mt-1">Rakuten Card</div>
+          <div class="text-xs text-slate-500">Welcome Bonus</div>
+        </a>
+        <a href="#esim" class="p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-red-400 transition block">
           <div class="text-xl">📶</div>
-          <div class="font-semibold text-slate-900 text-sm mt-1">eSIM & Wi-Fi</div>
+          <div class="font-semibold text-slate-900 text-sm mt-1">Japan eSIM</div>
           <div class="text-xs text-slate-500">Instant connection</div>
-        </div>
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-red-400 transition">
-          <div class="text-xl">🗺️</div>
-          <div class="font-semibold text-slate-900 text-sm mt-1">7-Day Routes</div>
-          <div class="text-xs text-slate-500">Tokyo & Kyoto</div>
-        </div>
+        </a>
+        <a href="#wise" class="p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-red-400 transition block">
+          <div class="text-xl">💸</div>
+          <div class="font-semibold text-slate-900 text-sm mt-1">Wise</div>
+          <div class="text-xs text-slate-500">Cheap Remittance</div>
+        </a>
+        <a href="#klook" class="p-4 bg-slate-50 rounded-xl border border-slate-200 hover:border-red-400 transition block">
+          <div class="text-xl">🎟️</div>
+          <div class="font-semibold text-slate-900 text-sm mt-1">Klook/KKday</div>
+          <div class="text-xs text-slate-500">Discount Tickets</div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Featured In-Depth Guides -->
-  <main id="guides" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 flex-1">
-    <div class="flex items-center justify-between mb-8">
-      <div>
-        <h2 class="text-2xl font-bold text-slate-900">Essential Travel Guides</h2>
-        <p class="text-sm text-slate-500">Step-by-step practical walk-throughs for your trip.</p>
+  <!-- Main Content Hubs -->
+  <main id="hubs" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 flex-1">
+
+    <!-- Hub A: Living, Ethics & Finance -->
+    <section id="hub-a" class="mb-16">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-slate-900" data-i18n="hub-a-title">Living, Ethics & Finance</h2>
+        <p class="text-sm text-slate-500" data-i18n="hub-a-desc">Japan Manners & Rules, Rakuten Cards & Points, Visas, Budget Living, Housing, Banking</p>
       </div>
-    </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="guides/japan-manners-and-etiquette.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🙇‍♂️</div>
+          <h3 class="font-bold text-lg text-slate-900">Japan Manners & Etiquette</h3>
+          <p class="text-sm text-slate-600 mt-2">Essential rules for transport, garbage, and daily life.</p>
+        </a>
+        <a href="guides/rakuten-card-points-guide.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">💳</div>
+          <h3 class="font-bold text-lg text-slate-900">Rakuten Card & Points</h3>
+          <p class="text-sm text-slate-600 mt-2">How to apply and maximize the Rakuten economy (Poi-katsu).</p>
+        </a>
+        <a href="guides/student-visa-and-costs.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🎓</div>
+          <h3 class="font-bold text-lg text-slate-900">Student & SSW Visas</h3>
+          <p class="text-sm text-slate-600 mt-2">Visa types, initial costs, and the 28-hour work rule.</p>
+        </a>
+        <a href="guides/budget-shopping-japan.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🛒</div>
+          <h3 class="font-bold text-lg text-slate-900">Budget Shopping</h3>
+          <p class="text-sm text-slate-600 mt-2">100-Yen shops, discount groceries, and second-hand stores.</p>
+        </a>
+        <a href="guides/foreigner-housing-guide.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🏠</div>
+          <h3 class="font-bold text-lg text-slate-900">Foreigner Housing Guide</h3>
+          <p class="text-sm text-slate-600 mt-2">Zero key money, UR Housing, and dealing with guarantors.</p>
+        </a>
+        <a href="guides/sim-banking-setup.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">📱</div>
+          <h3 class="font-bold text-lg text-slate-900">SIM & Banking Setup</h3>
+          <p class="text-sm text-slate-600 mt-2">Opening a Yucho bank account and getting a local SIM.</p>
+        </a>
+      </div>
+    </section>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      
-      <!-- Guide 1 -->
-      <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition flex flex-col">
-        <div class="h-44 bg-slate-100 flex items-center justify-center text-4xl">
-          📶
-        </div>
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-red-600">Connectivity</span>
-            <h3 class="text-lg font-bold text-slate-900 mt-1">
-              Best Japan eSIM & Pocket Wi-Fi Comparison
-            </h3>
-            <p class="text-sm text-slate-600 mt-2 line-clamp-3">
-              Detailed breakdown of Ubigi, Airalo, and Pocket Wi-Fi options for high-speed coverage across Japan without roaming charges.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-            <span>5 min read</span>
-            <span class="font-semibold text-red-600">Read Guide →</span>
-          </div>
-        </div>
-      </article>
+    <!-- Hub B: Professional Services -->
+    <section id="hub-b" class="mb-16 bg-blue-50 -mx-4 sm:-mx-6 px-4 sm:px-6 py-12 rounded-3xl">
+      <div class="max-w-4xl mx-auto text-center mb-8">
+        <h2 class="text-2xl font-bold text-blue-900" data-i18n="hub-b-title">Professional Services & Consultation</h2>
+        <p class="text-sm text-blue-700 mt-2" data-i18n="hub-b-desc">Visa Help, Translation, Rirekisho Writing, 1-on-1 Support</p>
+      </div>
+      <div class="max-w-3xl mx-auto text-center">
+        <a href="services.html" class="inline-block bg-blue-600 text-white font-bold py-4 px-8 rounded-xl hover:bg-blue-700 transition shadow-md">
+          Explore Our Premium Services →
+        </a>
+      </div>
+    </section>
 
-      <!-- Guide 2 -->
-      <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition flex flex-col">
-        <div class="h-44 bg-slate-100 flex items-center justify-center text-4xl">
-          💳
-        </div>
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-red-600">Transport</span>
-            <h3 class="text-lg font-bold text-slate-900 mt-1">
-              How to Add Digital Suica to Apple Wallet
-            </h3>
-            <p class="text-sm text-slate-600 mt-2 line-clamp-3">
-              Physical tourist cards are often sold out. Here is how to create a digital Suica or PASMO on your phone in under 2 minutes.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-            <span>4 min read</span>
-            <span class="font-semibold text-red-600">Read Guide →</span>
-          </div>
-        </div>
-      </article>
+    <!-- Hub C: Explore Japan (Top 10 Travel Guides) -->
+    <section id="hub-c" class="mb-16">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-slate-900" data-i18n="hub-c-title">Explore Japan: Top 10 Travel Guides</h2>
+        <p class="text-sm text-slate-500" data-i18n="hub-c-desc">Iconic Spots, Budget Hotels & Onsen, Food, Theme Parks, Shopping</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="guides/top-10-must-visit-japan.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">⛩️</div>
+          <h3 class="font-bold text-lg text-slate-900">Top 10 Must-Visit Spots</h3>
+        </a>
+        <a href="guides/top-10-budget-hotels-onsen.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🏨</div>
+          <h3 class="font-bold text-lg text-slate-900">Budget Hotels & Onsen</h3>
+        </a>
+        <a href="guides/top-10-must-try-foods.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🍣</div>
+          <h3 class="font-bold text-lg text-slate-900">Must-Try Japanese Food</h3>
+        </a>
+        <a href="guides/top-10-things-to-buy.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🛍️</div>
+          <h3 class="font-bold text-lg text-slate-900">Top Things to Buy</h3>
+        </a>
+        <a href="guides/top-10-theme-parks.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🎢</div>
+          <h3 class="font-bold text-lg text-slate-900">Best Theme Parks</h3>
+        </a>
+      </div>
+    </section>
 
-      <!-- Guide 3 -->
-      <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition flex flex-col">
-        <div class="h-44 bg-slate-100 flex items-center justify-center text-4xl">
-          🚅
-        </div>
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <span class="text-xs font-semibold uppercase tracking-wider text-red-600">Rail & Travel</span>
-            <h3 class="text-lg font-bold text-slate-900 mt-1">
-              Booking Shinkansen with Smart EX App
-            </h3>
-            <p class="text-sm text-slate-600 mt-2 line-clamp-3">
-              Avoid long ticket counter queues at Tokyo Station. Book Tokaido-Sanyo bullet train seats online with QR entry.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-            <span>6 min read</span>
-            <span class="font-semibold text-red-600">Read Guide →</span>
-          </div>
-        </div>
-      </article>
+    <!-- Hub D: Culture & Anime -->
+    <section id="hub-d" class="mb-16">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-slate-900" data-i18n="hub-d-title">Japanese Culture & Anime</h2>
+        <p class="text-sm text-slate-500" data-i18n="hub-d-desc">Top 10 Anime Movies, Documentaries, and Legendary Artists</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="guides/top-10-anime-movies.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🎬</div>
+          <h3 class="font-bold text-lg text-slate-900">Top 10 Anime Movies</h3>
+        </a>
+        <a href="guides/top-10-anime-documentaries.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🎥</div>
+          <h3 class="font-bold text-lg text-slate-900">Top 10 Anime Documentaries</h3>
+        </a>
+        <a href="guides/top-10-anime-artists.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+          <div class="text-3xl mb-4">🎨</div>
+          <h3 class="font-bold text-lg text-slate-900">Top 10 Anime Artists</h3>
+        </a>
+      </div>
+    </section>
 
-    </div>
   </main>
 
   <!-- Footer -->
   <footer class="bg-white border-t border-slate-200 mt-auto py-8">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center sm:flex sm:justify-between sm:items-center text-xs text-slate-500">
-      <p>© 2026 superguidejapan.com. All rights reserved.</p>
-      <p class="mt-2 sm:mt-0">Independent guide. Not affiliated with JR Group or Japan National Tourism Organization.</p>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+        <div class="mb-4 md:mb-0 flex space-x-4">
+          <a href="about.html" class="hover:text-red-600 transition">About Us</a>
+          <a href="privacy-policy.html" class="hover:text-red-600 transition">Privacy Policy & Disclosures</a>
+        </div>
+        <div class="text-center md:text-right">
+          <p data-i18n="footer-rights">© 2026 superguidejapan.com. All rights reserved.</p>
+          <p class="mt-1 text-xs" data-i18n="footer-disclaimer">Independent guide. Not affiliated with JR Group or Japan National Tourism Organization.</p>
+        </div>
+      </div>
     </div>
   </footer>
 
